@@ -1,8 +1,11 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
 
 export default function Home() {
+
+  const [ dropdownShow, setDropdownShow ] = useState(false); 
+
   return (
     <div className="home">
       <header>
@@ -15,10 +18,23 @@ export default function Home() {
           <a href="/">Our Shop</a>
           <a href="/">Contact</a>
         </nav>
-        <nav className="nav-mobile">
-          <FontAwesomeIcon Icon={faTimes} />
-        </nav>
+        <div className="nav-mobile" onClick={() => setDropdownShow(!dropdownShow)}>
+          { !dropdownShow &&
+            <FontAwesomeIcon icon={faBars}/>
+          }
+          { dropdownShow &&
+            <FontAwesomeIcon icon={faTimes}/>
+          }          
+        </div>
       </header>
+      { dropdownShow && 
+        <div className="mobile-dropdown-nav">
+          <a href="/">Gallery</a>
+          <a href="/">Artists</a>
+          <a href="/">Our Shop</a>
+          <a href="/">Contact</a>
+        </div>
+      }
       <div className="hero-wrap">
         <div className="hero">
           Not Your grandpa's Tattoo Shop<br/>
